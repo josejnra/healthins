@@ -1,9 +1,4 @@
-from datetime import datetime
-from enum import Enum
-from typing import List, Union
-
-from pydantic import validator
-from pydantic.main import BaseModel
+from pydantic import BaseModel
 
 
 class Healthins(BaseModel):
@@ -44,34 +39,3 @@ class Healthins(BaseModel):
     STATE: int = None
     US: int = None
     YEAR: int = None
-
-
-class GeographyLevelEnum(str, Enum):
-    us = 'us'
-    state = 'state'
-    county = 'county'
-
-
-class HealthinsRequestBody(BaseModel):
-
-    # get
-    headers: List[str]
-
-    # for
-    geography_level: GeographyLevelEnum
-    places: Union[int, str]
-
-    # in
-    for_states: Union[int, str] = None
-
-    # time
-    year: int
-
-    @validator('year')
-    def year_format(cls, v):
-        try:
-            datetime.strptime(str(v), '%Y')
-        except ValueError:
-            raise ValueError("Incorrect data format, should be YYYY")
-
-        return v
