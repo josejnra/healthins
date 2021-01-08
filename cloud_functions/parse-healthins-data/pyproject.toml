@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "parse-healthins-data"
+version = "0.1.0"
+description = ""
+authors = ["José Nunes <josenunesra@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+google-cloud-storage = "^1.35.0"
+pydantic = "^1.7.3"
+dask = {extras = ["complete"], version = "^2020.12.0"}
+pyarrow = "^2.0.0"
+fastparquet = "^0.5.0"
+gcsfs = "^0.7.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
