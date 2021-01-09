@@ -20,7 +20,7 @@ jobs:
           echo "$GCP_SA_KEY" | base64 --decode > key.json
 
       - name: Setup Credentials
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@master
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
@@ -32,7 +32,7 @@ jobs:
           name: parse-healthins-raw-data
           runtime: python38
           region: us-central1
-          source_dir: cloud_functions/parse-healthins-data
+          source_dir: ./cloud_functions/parse-healthins-data
           env_vars: BUCKET=${{ secrets.PARSED_DATA_BUCKET }}
 
       - name: Show Output
