@@ -1,6 +1,7 @@
 import json
 import base64
 import copy
+import os
 from typing import List
 from uuid import uuid4
 from datetime import datetime
@@ -28,7 +29,7 @@ def main(event, context):
     dask_df = dask_df.reset_index(drop=True)
 
     now = datetime.utcnow()
-    path = f"gs://healthins-parsed-data/{now.year}/{'{:02d}'.format(now.month)}/{'{:02d}'.format(now.day)}/{'{:02d}'.format(now.hour)}/{uuid4().hex}"
+    path = f"gs://{os.environ['BUCKET']}/{now.year}/{'{:02d}'.format(now.month)}/{'{:02d}'.format(now.day)}/{'{:02d}'.format(now.hour)}/{uuid4().hex}"
     dask_df.to_parquet(path,
                        storage_options={'token': './key.json'})
 
