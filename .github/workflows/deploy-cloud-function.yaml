@@ -28,7 +28,7 @@ jobs:
           region: us-central1
           source_dir: cloud_functions/parse-healthins-data
           env_vars: BUCKET=${{ secrets.PARSED_DATA_BUCKET }}
-          credentials: ${{ secrets.GCP_SA_KEY }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
 
       - name: Show Output
         run: curl "${{ steps.deploy.outputs.url }}"
