@@ -11,6 +11,6 @@ COPY ./app/pyproject.toml ./app/poetry.lock* /app/
 
 RUN poetry install --no-root --no-dev
 
-COPY ./app /app/app
+COPY ./app /app
 
-ENV ENV_FILE_PATH "/app/app/.docker-env"
+ENV ENV_FILE_PATH "/app/.docker-env"

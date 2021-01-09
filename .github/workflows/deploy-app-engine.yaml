@@ -39,11 +39,8 @@ jobs:
           cd app
           poetry install --no-root --no-dev
 
-      - name: Run unittest
+      - name: Run Tests
         run: |
-          cd app
-          pwd
-          ls -la
           poetry run python -m unittest discover
 
 #  deploy:
