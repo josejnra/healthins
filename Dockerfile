@@ -1,13 +1,16 @@
-FROM python:3.7
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-RUN pip install fastapi uvicorn
+# Install Poetry
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | POETRY_HOME=/opt/poetry python && \
+    cd /usr/local/bin && \
+    ln -s /opt/poetry/bin/poetry && \
+    poetry config virtualenvs.create false
 
-EXPOSE 80
+# Copy using poetry.lock* in case it doesn't exist yet
+COPY ./app/pyproject.toml ./app/poetry.lock* /app/
 
-COPY ./app /app
+RUN poetry install --no-root --no-dev
 
-RUN pip install -r /app/requirements.txt
+COPY ./app /app/app
 
-ENV ENV_FILE_PATH "/app/.env"
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+ENV ENV_FILE_PATH "/app/app/.docker-env"
