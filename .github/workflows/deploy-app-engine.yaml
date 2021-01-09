@@ -62,12 +62,6 @@ jobs:
           echo "$GCP_SA_KEY" | base64 --decode > key.json
           echo "$ENV_FILE" | base64 --decode > .docker-env
 
-      - name: Build
-        run: |
-          cd app
-          ls -la
-          cat .docker-env
-
       - name: Deploy to App Engine
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0
