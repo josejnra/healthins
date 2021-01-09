@@ -39,11 +39,6 @@ jobs:
           cd app
           poetry install --no-root --no-dev
 
-      - name: Show Installed Dependencies
-        run: |
-          cd app
-          poetry run python -m pip freeze
-
       - name: Run unittest
         run: |
           cd app
