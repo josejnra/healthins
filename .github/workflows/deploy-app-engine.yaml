@@ -54,12 +54,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Construct .env File
+        env:
+          ENV_FILE: ${{ secrets.ENV_FILE }}
+          GCP_SA_KEY: ${{ secrets.ENV_FILE }}
         run: |
           echo "O que tem aqui?"
-          base64 -d ${{ secrets.ENV_FILE }}
+          echo $ENV_FILE | base64 --decode
           cd app
-          base64 -d ${{ secrets.GCP_SA_KEY }} > key.json
-          base64 -d ${{ secrets.ENV_FILE }} > .docker-env
+          echo $GCP_SA_KEY | base64 --decode > key.json
+          echo $ENV_FILE | base64 --decode > .docker-env
 
       - name: Deploy to App Engine
         id: deploy
