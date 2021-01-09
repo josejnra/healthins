@@ -1,0 +1,34 @@
+on: [push]
+
+name: Build and Deploy to Cloud Function
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate Key File
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          cd cloud_functions/parse-healthins-data
+          echo "$GCP_SA_KEY" | base64 --decode > key.json
+
+      - name: Deploy to Cloud Function
+        id: deploy
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: parse-healthins-raw-data
+          runtime: python38
+          region: us-central1
+          source_dir: cloud_functions/parse-healthins-data
+          env_vars: BUCKET=${{ secrets.PARSED_DATA_BUCKET }}
+          credentials: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Show Output
+        run: curl "${{ steps.deploy.outputs.url }}"
