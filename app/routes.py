@@ -13,6 +13,8 @@ from schemas import Healthins
 
 router = APIRouter()
 
+publisher = PublisherMessage(GCPPubSub(settings.project_id, settings.google_credentials))
+
 
 @router.post('/healthins/')
 def healthins_data(healthins_params: Healthins):
@@ -34,7 +36,5 @@ def healthins_data(healthins_params: Healthins):
 def save_retrieved_data(retrieved_data: List[List[str]]):
     formatted_data = dict(columns=retrieved_data[0], rows=retrieved_data[1:])
     message = json.dumps(formatted_data)
-
-    publisher = PublisherMessage(GCPPubSub(settings.project_id, settings.google_credentials))
 
     return publisher.publish(settings.pubsub_topic, message)

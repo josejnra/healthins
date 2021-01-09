@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     class Config:
         case_sensitive = True
-        env_file = os.environ.get('ENV_FILE_PATH', '/home/jose/Projects/PycharmProjects/etus/app/.env')
+        env_file = os.environ.get('ENV_FILE_PATH')
 
 
 settings = Settings()
