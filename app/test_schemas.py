@@ -18,6 +18,16 @@ class HealthinsTest(unittest.TestCase):
         body_validator = Healthins(**body_request)
         self.assertEqual("*", body_validator.for_states)
 
+    def test_invalid_header(self):
+        body_request = {
+            "headers": ["ANOTHER"],
+            "geography_level": "county",
+            "places": "*",
+            "for_states": "*",
+            "year": 2018
+        }
+        self.assertRaises(ValidationError, Healthins, **body_request)
+
     def test_geography_level(self):
         body_request = {
             "headers": ["NAME"],
