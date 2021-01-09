@@ -33,10 +33,12 @@ jobs:
 
       - name: Show Installed Dependencies
         run: |
+          cd app
           poetry run python -m pip freeze
 
       - name: Run unittest
         run: |
+          cd app
           pwd
           ls -la
           poetry run python -m unittest discover
