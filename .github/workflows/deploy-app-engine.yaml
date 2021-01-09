@@ -53,6 +53,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Construct .env File
+        run: |
+          echo "O que tem aqui?"
+          base64 -d ${{ secrets.ENV_FILE }}
+          cd app
+          base64 -d ${{ secrets.GCP_SA_KEY }} > key.json
+          base64 -d ${{ secrets.ENV_FILE }} > .docker-env
+
       - name: Deploy to App Engine
         id: deploy
         uses: google-github-actions/deploy-appengine@v0.2.0
