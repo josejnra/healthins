@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Healthins(BaseModel):
+class HealthinsSchema(BaseModel):
 
     AGE_DESC: int = None
     AGECAT: int = None
@@ -10,7 +10,7 @@ class Healthins(BaseModel):
     GEOID: int = None
     IPR_DESC: int = None
     IPRCAT: int = None
-    NAME: int = None
+    NAME: str = None
     NIC_LB90: int = None
     NIC_MOE: int = None
     NIC_PT: int = None
@@ -39,3 +39,9 @@ class Healthins(BaseModel):
     STATE: int = None
     US: int = None
     YEAR: int = None
+
+
+def parse_name(name):
+    return {
+        "TIME": "YEAR"
+    }.get(name, name)
