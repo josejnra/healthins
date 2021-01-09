@@ -56,7 +56,7 @@ jobs:
       - name: Construct .env File
         env:
           ENV_FILE: ${{ secrets.ENV_FILE }}
-          GCP_SA_KEY: ${{ secrets.ENV_FILE }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
           echo "O que tem aqui?"
           echo $ENV_FILE | base64 --decode
