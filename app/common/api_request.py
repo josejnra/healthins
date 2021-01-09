@@ -3,7 +3,7 @@ from typing import List
 
 import requests
 
-from app.common.data_source_abstract import DataSourceAbstract
+from common.data_source_abstract import DataSourceAbstract
 
 
 class APIRequest(DataSourceAbstract):

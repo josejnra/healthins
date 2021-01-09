@@ -1,6 +1,6 @@
 import unittest
 
-from app.healthins_api.params_builder import ParamsBuilder
+from healthins_api.params_builder import ParamsBuilder
 
 
 class ParamsBuilderTest(unittest.TestCase):

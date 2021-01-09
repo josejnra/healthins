@@ -5,7 +5,7 @@ from google.cloud.pubsub_v1.publisher import Client
 
 
 class AbstractPublisher(ABC):
-    
+
     @abstractmethod
     def publish_message(self, topic: str, message: str):
         raise NotImplementedError

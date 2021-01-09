@@ -4,12 +4,12 @@ import json
 from fastapi import APIRouter, HTTPException
 from google.api_core.exceptions import NotFound
 
-from app.common.api_request import APIRequest
-from app.common.publisher import PublisherMessage, GCPPubSub
-from app.config import settings
-from app.healthins_api.health_insurance_statistics import HealthInsuranceStatistics
-from app.healthins_api.params_builder import ParamsBuilder
-from app.schemas import Healthins
+from common.api_request import APIRequest
+from common.publisher import PublisherMessage, GCPPubSub
+from config import settings
+from healthins_api.health_insurance_statistics import HealthInsuranceStatistics
+from healthins_api.params_builder import ParamsBuilder
+from schemas import Healthins
 
 router = APIRouter()
 

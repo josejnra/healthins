@@ -2,7 +2,7 @@ import unittest
 
 from pydantic import ValidationError
 
-from app.schemas import Healthins
+from schemas import Healthins
 
 
 class HealthinsTest(unittest.TestCase):
