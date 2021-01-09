@@ -19,7 +19,7 @@ class APIRequestTest(unittest.TestCase):
         setattr(response_object_mock, 'status_code', 200)
 
         get_method.return_value = response_object_mock
-        response = APIRequest.get_data('ABC')
+        response = APIRequest().get('ABC')
         self.assertEqual(response, [['NIC_PT', 'NUI_PT', 'time', 'state', 'county'], ['133987', '9173', '2017', '10', '001']])
 
     @patch('app.common.api_request.requests.get')
@@ -29,4 +29,4 @@ class APIRequestTest(unittest.TestCase):
         setattr(response_object_mock, 'status_code', 400)
 
         get_method.return_value = response_object_mock
-        self.assertRaises(requests.exceptions.RequestException, APIRequest.get_data, 'ABC')
+        self.assertRaises(requests.exceptions.RequestException, APIRequest().get, 'ABC')
