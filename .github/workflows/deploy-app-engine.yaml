@@ -59,10 +59,10 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
           echo "O que tem aqui?"
-          echo $ENV_FILE | base64 --decode
+          echo "$ENV_FILE" | base64 --decode
 #          cd app
-#          echo $GCP_SA_KEY | base64 --decode > key.json
-#          echo $ENV_FILE | base64 --decode > .docker-env
+#          echo "$GCP_SA_KEY" | base64 --decode > key.json
+#          echo "$ENV_FILE" | base64 --decode > .docker-env
 
 #      - name: Deploy to App Engine
 #        id: deploy
