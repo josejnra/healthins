@@ -31,7 +31,7 @@ jobs:
         with:
           name: parse-healthins-raw-data
           runtime: python38
-          source_dir: ./cloud_functions/parse-healthins-data
+          region: us-central1
 
       - name: Show Output
         run: curl "${{ steps.deploy.outputs.url }}"
