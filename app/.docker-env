@@ -1,0 +1,4 @@
+base_url='https://api.census.gov/data/timeseries/healthins/sahie'
+project_id='bubbly-upgrade-300800'
+google_credentials='/app/key.json'
+pubsub_topic='healthins-raw-data'
